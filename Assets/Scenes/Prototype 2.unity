@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaa2465777f01824cbeb5c77a475b99d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Prototype2.PlayerController
-  foodPrefab: {fileID: 1083040366009566656, guid: fa86521f5525ed444a649ac78936a583, type: 3}
+  _foodPrefab: {fileID: 6465147926746350342, guid: fa86521f5525ed444a649ac78936a583, type: 3}
   _speed: 15
   _bound: 15
 --- !u!1 &170076733
@@ -565,10 +565,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b0ac474201bb9042917e8224fd16bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalSpawner
-  _animalPrefabs:
-  - {fileID: 6262651868737532058, guid: 7f7183eead7c0d448bc95725bfc06bc3, type: 3}
-  - {fileID: 8369041252999982365, guid: 3c413b99214b5254f8a3668bdc263a60, type: 3}
-  - {fileID: 8279993196168915035, guid: 3b23f1dcdd76d884da84a578474b8551, type: 3}
+  _prefabs:
+  - {fileID: 4824234464565977518, guid: 7f7183eead7c0d448bc95725bfc06bc3, type: 3}
+  - {fileID: 5198535816398205643, guid: 3c413b99214b5254f8a3668bdc263a60, type: 3}
+  - {fileID: 3807207230723264194, guid: 3b23f1dcdd76d884da84a578474b8551, type: 3}
   _startDelay: 2
   _interval: 1.5
   _xRange: 15

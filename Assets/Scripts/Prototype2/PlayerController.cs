@@ -7,7 +7,7 @@ namespace Prototype2
 	public class PlayerController : MonoBehaviour
 	{
 		[SerializeField]
-		private GameObject foodPrefab;
+		private PoolableObject _foodPrefab;
 
 		[SerializeField]
 		private float _speed = 1.0f;
@@ -20,8 +20,12 @@ namespace Prototype2
 
 		private InputAction _fireAction;
 
+		private ObjectPool<PoolableObject> _pool;
+
 		void Start()
 		{
+			_pool = new ObjectPool<PoolableObject>(_foodPrefab);
+
 			_moveAction = InputSystem.actions.FindAction("Move");
 			_fireAction = InputSystem.actions.FindAction("Fire");
 
@@ -48,7 +52,12 @@ namespace Prototype2
 
 		private void onFire(InputAction.CallbackContext context)
 		{
-			Instantiate(foodPrefab, transform.position, Quaternion.identity);
+			var food = _pool.GetObject();
+
+			food.gameObject.transform.position = transform.position;
+
+			food.gameObject.SetActive(true);
+			//Instantiate(_foodPrefab, transform.position, Quaternion.identity);
 		}
 	}
 }
