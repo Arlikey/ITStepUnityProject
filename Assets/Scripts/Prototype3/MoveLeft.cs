@@ -21,6 +21,11 @@ namespace Prototype3
 		// Update is called once per frame
 		void Update()
 		{
+			if (GameManager._isGameOver)
+			{
+				return;
+			}
+
 			transform.Translate(Vector3.left * Time.deltaTime * _speed);
 
 			if (transform.position.x < _leftBound)
