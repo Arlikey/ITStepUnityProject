@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Prototype4
@@ -6,6 +7,8 @@ namespace Prototype4
 	{
 		[SerializeField]
 		private float _speed = 7.0f;
+
+		public event Action DeathEvent;
 
 		private GameObject _player;
 
@@ -21,6 +24,12 @@ namespace Prototype4
 		{
 			Vector3 lookDir = (_player.transform.position - transform.position).normalized;
 			_rigidBody.AddForce(lookDir * _speed);
+
+			if(transform.position.y < -15f)
+			{
+				DeathEvent?.Invoke();
+				Destroy(gameObject);
+			}
 		}
 	}
 

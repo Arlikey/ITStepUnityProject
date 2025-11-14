@@ -18,6 +18,9 @@ namespace Prototype4
 
 		[SerializeField]
 		private float _powerUpCountdown = 5.0f;
+
+		[SerializeField]
+		private GameObject _powerUpIndicator;
 		void Start()
 		{
 			_rigidbody = GetComponent<Rigidbody>();
@@ -27,6 +30,8 @@ namespace Prototype4
 
 		void Update()
 		{
+			_powerUpIndicator.transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
+
 			float verticalInput = Input.GetAxis("Vertical");
 
 			_rigidbody.AddForce(_focalPoint.transform.forward * verticalInput * _speed);
@@ -37,6 +42,7 @@ namespace Prototype4
 			if (other.CompareTag("PowerUp"))
 			{
 				_hasPowerUp = true;
+				_powerUpIndicator.SetActive(true);
 				StartCoroutine(PowerUpCountdownRoutine());
 				Destroy(other.gameObject);
 			}
@@ -57,6 +63,7 @@ namespace Prototype4
 			yield return new WaitForSeconds(_powerUpCountdown);
 
 			_hasPowerUp = false;
+			_powerUpIndicator.SetActive(false);
 		}
 	}
 
