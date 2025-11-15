@@ -14,7 +14,15 @@ namespace Challenge2
 
 		private float _nextAvailableTime;
 
+		[SerializeField]
+		private AudioClip _sendDogSound;
+
+		private AudioSource _audioSource;
 		// Update is called once per frame
+		private void Start()
+		{
+			_audioSource = GetComponent<AudioSource>();
+		}
 		void Update()
 		{
 			if (!GameManager.Instance._isGameActive)
@@ -23,6 +31,7 @@ namespace Challenge2
 			// On spacebar press, send dog
 			if (Input.GetKeyDown(KeyCode.Space) && Time.time >= _nextAvailableTime)
 			{
+				_audioSource.PlayOneShot(_sendDogSound, 0.8f);
 				Instantiate(dogPrefab, transform.position, dogPrefab.transform.rotation);
 				_nextAvailableTime = Time.time + _cooldown;
 			}
