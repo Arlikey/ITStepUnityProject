@@ -1,6 +1,10 @@
 using UnityEngine;
 
-public class GameManager
+namespace Prototype3
 {
-    public static bool _isGameOver = false;
+	public class GameManager
+	{
+		public static bool _isGameOver = false;
+	}
+
 }

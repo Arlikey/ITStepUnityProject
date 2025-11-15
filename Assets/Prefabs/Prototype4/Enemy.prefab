@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5407134487884852800}
   - component: {fileID: 271100107722886048}
   - component: {fileID: 645363569190859791}
+  - component: {fileID: 8748023642211888098}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -153,3 +154,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Prototype4.Enemy
   _speed: 7
+--- !u!114 &8748023642211888098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261681943689418462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519cae4440f4ffd4a80c011bdfeb6b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Prototype2.PoolableObject

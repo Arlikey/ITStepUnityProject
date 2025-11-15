@@ -1,3 +1,4 @@
+using Prototype2;
 using UnityEngine;
 
 namespace Prototype4
@@ -5,19 +6,25 @@ namespace Prototype4
 	public class SpawnManager : MonoBehaviour
 	{
 		[SerializeField]
-		private GameObject _enemyPrefab;
+		private PoolableObject _prefab;
+
 		[SerializeField]
-		private GameObject _powerUpPrefab;
+		private PoolableObject _powerUpPrefab;
 
 		[SerializeField]
 		private float _spawnRadius = 10.0f;
 
 		private int _enemyCount;
 		private int _waveNumber = 1;
-		// Start is called once before the first execution of Update after the MonoBehaviour is created
+
+		private ObjectPool<PoolableObject> _enemyPool;
+		private ObjectPool<PoolableObject> _powerUpPool;
+
 		void Start()
 		{
-			//SpawnEnemy();
+			_enemyPool = new ObjectPool<PoolableObject>(_prefab);
+			_powerUpPool = new ObjectPool<PoolableObject>(_powerUpPrefab);
+
 			SpawnEnemyWave(_waveNumber);
 		}
 
@@ -25,7 +32,10 @@ namespace Prototype4
 		{
 			Vector3 spawnPos = GenerateRandomPoint();
 
-			var enemy = Instantiate(_enemyPrefab, spawnPos, Quaternion.identity).GetComponent<Enemy>();
+			var enemy = _enemyPool.GetObject().GetComponent<Enemy>();
+			enemy.transform.position = spawnPos;
+			enemy.gameObject.SetActive(true);
+
 			_enemyCount++;
 			enemy.DeathEvent += () => _enemyCount--;
 		}
@@ -44,13 +54,15 @@ namespace Prototype4
 			{
 				SpawnEnemy();
 			}
-			Instantiate(_powerUpPrefab, GenerateRandomPoint(), Quaternion.identity);
+			var powerUp = _powerUpPool.GetObject();
+			powerUp.transform.position = GenerateRandomPoint();
+			powerUp.gameObject.SetActive(true);
 		}
 
-		// Update is called once per frame
 		void Update()
 		{
-			if (_enemyCount <= 0) {
+			if (_enemyCount <= 0)
+			{
 				SpawnEnemyWave(++_waveNumber);
 			}
 		}

@@ -1,3 +1,4 @@
+using Prototype2;
 using System.Collections;
 using UnityEngine;
 
@@ -44,7 +45,7 @@ namespace Prototype4
 				_hasPowerUp = true;
 				_powerUpIndicator.SetActive(true);
 				StartCoroutine(PowerUpCountdownRoutine());
-				Destroy(other.gameObject);
+				other.GetComponent<PoolableObject>().ReturnCallback();
 			}
 		}
 

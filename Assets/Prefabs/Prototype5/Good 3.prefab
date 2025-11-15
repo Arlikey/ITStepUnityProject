@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2399148671854256191}
   - component: {fileID: 6178888068036014735}
   - component: {fileID: 645838554051283783}
+  - component: {fileID: -4426185621912619005}
   m_Layer: 0
   m_Name: Good 3
   m_TagString: Untagged
@@ -157,3 +158,15 @@ MonoBehaviour:
   _rangeTorgue: 10
   _score: 30
   _particleSystem: {fileID: 6601538019107920666, guid: 70a1428e5f80a4866a779ef1ab9fe521, type: 3}
+--- !u!114 &-4426185621912619005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2804262316414699299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 519cae4440f4ffd4a80c011bdfeb6b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Prototype2.PoolableObject

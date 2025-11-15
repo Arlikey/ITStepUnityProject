@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Prototype1
 {
@@ -36,6 +37,14 @@ namespace Prototype1
 		private void onMove(InputAction.CallbackContext context)
 		{
 			_moveInput = context.ReadValue<Vector2>();
+		}
+
+		private void OnTriggerEnter(Collider other)
+		{
+			if (other.CompareTag("Finish"))
+			{
+
+			}
 		}
 	}
 

@@ -1,3 +1,4 @@
+using Prototype2;
 using System;
 using UnityEngine;
 
@@ -13,9 +14,12 @@ namespace Prototype4
 		private GameObject _player;
 
 		private Rigidbody _rigidBody;
+
+		private PoolableObject _poolableObject;
 		void Start()
 		{
 			_rigidBody = GetComponent<Rigidbody>();
+			_poolableObject = GetComponent<PoolableObject>();
 
 			_player = GameObject.Find("Player");
 		}
@@ -28,7 +32,7 @@ namespace Prototype4
 			if(transform.position.y < -15f)
 			{
 				DeathEvent?.Invoke();
-				Destroy(gameObject);
+				_poolableObject.ReturnCallback();
 			}
 		}
 	}
