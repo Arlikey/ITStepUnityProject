@@ -1,3 +1,4 @@
+using Menu;
 using Prototype2;
 using UnityEngine;
 
@@ -21,10 +22,8 @@ namespace Prototype3
 		// Update is called once per frame
 		void Update()
 		{
-			if (GameManager._isGameOver)
-			{
+			if (!GameManager.Instance._isGameActive)
 				return;
-			}
 
 			transform.Translate(Vector3.left * Time.deltaTime * _speed);
 

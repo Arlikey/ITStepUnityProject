@@ -1,3 +1,4 @@
+using Menu;
 using UnityEngine;
 
 namespace Prototype2
@@ -19,17 +20,18 @@ namespace Prototype2
 
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			if (transform.position.z > _upperBound)
 			{
 				_poolable.ReturnCallback();
-				//Destroy(gameObject);
 			}
 			else if (transform.position.z < _lowerBound)
 			{
 				_poolable.ReturnCallback();
-				//Destroy(gameObject);
-				Debug.Log("Game Over");
-				Time.timeScale = 0.0f;
+
+				GameManager.Instance.GameOver();
 			}
 		}
 	}

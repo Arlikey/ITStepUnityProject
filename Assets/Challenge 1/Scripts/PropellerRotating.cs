@@ -1,3 +1,4 @@
+using Menu;
 using UnityEngine;
 
 public class PropellerRotating : MonoBehaviour
@@ -11,6 +12,9 @@ public class PropellerRotating : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(Vector3.forward, _rotationSpeed * Time.deltaTime);
+		if (!GameManager.Instance._isGameActive)
+			return;
+
+		transform.Rotate(Vector3.forward, _rotationSpeed * Time.deltaTime);
     }
 }

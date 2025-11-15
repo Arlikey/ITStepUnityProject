@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menu;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ public class PlayerControllerX : MonoBehaviour
 
 	void FixedUpdate()
 	{
+		if (!GameManager.Instance._isGameActive)
+			return;
+
 		// get the user's vertical input
 		_verticalInput = Input.GetAxis("Vertical");
 
@@ -26,5 +30,13 @@ public class PlayerControllerX : MonoBehaviour
 
 		// tilt the plane up/down based on up/down arrow keys
 		transform.Rotate(Vector3.right, _rotationSpeed * Time.deltaTime * _verticalInput);
+	}
+
+	private void OnCollisionEnter(Collision collision)
+	{
+		if (collision.gameObject.CompareTag("Obstacle"))
+		{
+			GameManager.Instance.GameOver();
+		}
 	}
 }

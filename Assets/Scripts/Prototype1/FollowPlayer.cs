@@ -1,3 +1,4 @@
+using Menu;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ namespace Prototype1
 		// Update is called once per frame
 		void LateUpdate()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			transform.position = _player.transform.position + _offset;
 		}
 	}

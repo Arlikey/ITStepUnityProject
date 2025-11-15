@@ -9,12 +9,6 @@ namespace Menu
 		{
 			SceneManager.LoadScene(index);
 		}
-
-		public void QuitGame()
-		{
-			Application.Quit();
-			Debug.Log("Game quit");
-		}
 	}
 
 }

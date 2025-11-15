@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menu;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ public class MoveForwardX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
+		if (!GameManager.Instance._isGameActive)
+			return;
+
+		transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 }

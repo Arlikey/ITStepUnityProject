@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menu;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,9 @@ namespace Challenge3
 		// Update is called once per frame
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			// If game is not over, move to the left
 			if (!playerControllerScript.gameOver)
 			{

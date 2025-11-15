@@ -68,11 +68,6 @@ namespace Prototype5
 				};
 			}
 		}
-
-		public void RestartGame()
-		{
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-		}
 	}
 
 }

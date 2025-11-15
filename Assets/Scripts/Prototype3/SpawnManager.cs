@@ -1,3 +1,4 @@
+using Menu;
 using Prototype2;
 using UnityEngine;
 
@@ -33,10 +34,9 @@ namespace Prototype3
 
 		private void SpawnObstacle()
 		{
-			if (GameManager._isGameOver)
-			{
+			if (!GameManager.Instance._isGameActive)
 				return;
-			}
+
 			var obstacle = _pool.GetObject();
 			obstacle.transform.position = _spawnPos;
 			obstacle.gameObject.SetActive(true);

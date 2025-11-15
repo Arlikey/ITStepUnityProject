@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menu;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,6 +41,8 @@ namespace Challenge3
 		// Update is called once per frame
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
 			// While space is pressed and player is low enough, float up
 			if (Input.GetKey(KeyCode.Space) && !gameOver && transform.position.y < _upperBound)
 			{
@@ -58,6 +61,7 @@ namespace Challenge3
 				gameOver = true;
 				Debug.Log("Game Over!");
 				Destroy(other.gameObject);
+				GameManager.Instance.GameOver();
 			}
 
 			// if player collides with money, fireworks

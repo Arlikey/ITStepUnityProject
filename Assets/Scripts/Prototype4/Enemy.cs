@@ -1,3 +1,4 @@
+using Menu;
 using Prototype2;
 using System;
 using UnityEngine;
@@ -18,14 +19,28 @@ namespace Prototype4
 		private PoolableObject _poolableObject;
 		void Start()
 		{
+
 			_rigidBody = GetComponent<Rigidbody>();
 			_poolableObject = GetComponent<PoolableObject>();
 
 			_player = GameObject.Find("Player");
 		}
 
+		private void OnEnable()
+		{
+			DeathEvent = null;
+			if (_rigidBody)
+			{
+				_rigidBody.linearVelocity = Vector3.zero;
+				_rigidBody.angularVelocity = Vector3.zero;
+			}
+		}
+
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			Vector3 lookDir = (_player.transform.position - transform.position).normalized;
 			_rigidBody.AddForce(lookDir * _speed);
 

@@ -1,3 +1,4 @@
+using Menu;
 using UnityEngine;
 
 namespace Prototype2
@@ -13,6 +14,9 @@ namespace Prototype2
 
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			transform.Translate(Vector3.forward * Time.deltaTime * _speed);
 		}
 	}

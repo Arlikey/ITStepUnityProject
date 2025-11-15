@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menu;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,6 +24,9 @@ namespace Challenge4
 		// Update is called once per frame
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
 
 			if (enemyCount == 0)

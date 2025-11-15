@@ -158,6 +158,7 @@ MonoBehaviour:
   _rangeTorgue: 10
   _score: 20
   _particleSystem: {fileID: 2088871590894813759, guid: 745208c9d6e104225bd99e1ab894e3bb, type: 3}
+  _popSound: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
 --- !u!114 &1228888645375437941
 MonoBehaviour:
   m_ObjectHideFlags: 0

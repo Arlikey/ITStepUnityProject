@@ -1,3 +1,4 @@
+using Menu;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -27,6 +28,9 @@ namespace Prototype1
 
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			horizontalInput = _moveInput.x;
 			verticalInput = _moveInput.y;
 
@@ -41,9 +45,9 @@ namespace Prototype1
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (other.CompareTag("Finish"))
+			if (other.CompareTag("Dead Zone"))
 			{
-
+				GameManager.Instance.GameOver();
 			}
 		}
 	}

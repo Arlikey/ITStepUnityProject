@@ -1,3 +1,4 @@
+using Menu;
 using Prototype2;
 using UnityEngine;
 
@@ -61,6 +62,9 @@ namespace Prototype4
 
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			if (_enemyCount <= 0)
 			{
 				SpawnEnemyWave(++_waveNumber);

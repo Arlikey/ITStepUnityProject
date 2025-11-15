@@ -1,3 +1,4 @@
+using Menu;
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -29,26 +30,34 @@ namespace Prototype3
 
 		private bool _isGrounded = true;
 
+		private Vector3 _originalGravity;
+
 		void Start()
 		{
 			_animator = GetComponent<Animator>();
 			_audioSource = GetComponent<AudioSource>();
 
 			_rb = GetComponent<Rigidbody>();
+
+			_originalGravity = Physics.gravity;
+
 			Physics.gravity *= _gravityModifier;
 
 			_jumpAction = InputSystem.actions.FindAction("Jump");
 			_jumpAction.performed += OnJump;
 		}
 
-		void Update()
+		private void OnDestroy()
 		{
+			Physics.gravity = _originalGravity;
 
+			if (_jumpAction != null)
+				_jumpAction.performed -= OnJump;
 		}
 
 		private void OnJump(InputAction.CallbackContext context)
 		{
-			if (_isGrounded && !GameManager._isGameOver)
+			if (_isGrounded && GameManager.Instance._isGameActive)
 			{
 				_audioSource.PlayOneShot(_jumpSound, 1.0f);
 				_dirtEffect.Stop();
@@ -62,7 +71,7 @@ namespace Prototype3
 		{
 			if (collision.gameObject.CompareTag("Ground"))
 			{
-				if (!GameManager._isGameOver)
+				if (GameManager.Instance._isGameActive)
 				{
 					_dirtEffect.Play();
 				}
@@ -75,7 +84,7 @@ namespace Prototype3
 				_explosionEffect.Play();
 				_animator.SetBool("Death_b", true);
 				_animator.SetInteger("DeathType_int", 1);
-				GameManager._isGameOver = true;
+				GameManager.Instance.GameOver();
 			}
 		}
 	}

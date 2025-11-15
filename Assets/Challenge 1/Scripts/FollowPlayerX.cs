@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menu;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +19,9 @@ public class FollowPlayerX : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = _plane.transform.position + _offset;
+		if (!GameManager.Instance._isGameActive)
+			return;
+
+		transform.position = _plane.transform.position + _offset;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menu;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,6 +17,9 @@ namespace Challenge2
 		// Update is called once per frame
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			// On spacebar press, send dog
 			if (Input.GetKeyDown(KeyCode.Space) && Time.time >= _nextAvailableTime)
 			{

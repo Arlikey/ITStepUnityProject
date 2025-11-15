@@ -25,6 +25,8 @@ namespace Prototype5
 
 		[SerializeField]
 		private ParticleSystem _particleSystem;
+		[SerializeField]
+		private AudioClip _popSound;
 
 		public event Action<int> OnClicked;
 		public event Action GameOverEvent;
@@ -71,6 +73,7 @@ namespace Prototype5
 		private void OnMouseDown()
 		{
 			OnClicked?.Invoke(_score);
+			AudioManager.PopSource.PlayOneShot(_popSound, 1.0f);
 			Instantiate(_particleSystem, transform.position, Quaternion.identity);
 			_poolableObject.ReturnCallback();
 		}

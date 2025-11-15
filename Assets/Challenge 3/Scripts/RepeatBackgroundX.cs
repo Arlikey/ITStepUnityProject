@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menu;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,6 +18,8 @@ namespace Challenge3
 
 		private void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
 			// If background moves left by its repeat width, move it back to start position
 			if (transform.position.x < startPos.x - repeatWidth)
 			{

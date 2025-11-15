@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menu;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,7 @@ public class DestroyOutOfBoundsX : MonoBehaviour
         else if (transform.position.y < bottomLimit)
         {
             Destroy(gameObject);
+            GameManager.Instance.GameOver();
         }
 
     }

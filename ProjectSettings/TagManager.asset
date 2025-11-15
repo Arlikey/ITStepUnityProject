@@ -11,6 +11,10 @@ TagManager:
   - Enemy
   - Powerup
   - Bad
+  - Background
+  - Bomb
+  - Money
+  - Dead Zone
   layers:
   - Default
   - TransparentFX

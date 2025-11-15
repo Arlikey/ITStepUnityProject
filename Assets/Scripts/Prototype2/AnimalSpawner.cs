@@ -1,3 +1,4 @@
+using Menu;
 using UnityEngine;
 
 namespace Prototype2
@@ -29,6 +30,8 @@ namespace Prototype2
 
 		private void SpawnRandomAnimal()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
 			//int index = Random.Range(0, _animalPrefabs.Length);
 
 			float xSpawnCoord = Random.Range(-_xRange, _xRange);

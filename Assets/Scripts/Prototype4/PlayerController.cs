@@ -1,3 +1,4 @@
+using Menu;
 using Prototype2;
 using System.Collections;
 using UnityEngine;
@@ -22,15 +23,23 @@ namespace Prototype4
 
 		[SerializeField]
 		private GameObject _powerUpIndicator;
+		[SerializeField]
+		private AudioClip _powerUpSound;
+
+		private AudioSource _audioSource;
 		void Start()
 		{
 			_rigidbody = GetComponent<Rigidbody>();
+			_audioSource = GetComponent<AudioSource>();
 
 			_focalPoint = GameObject.Find("Focal Point");
 		}
 
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			_powerUpIndicator.transform.position = new Vector3(transform.position.x, transform.position.y - 0.4f, transform.position.z);
 
 			float verticalInput = Input.GetAxis("Vertical");
@@ -42,16 +51,20 @@ namespace Prototype4
 		{
 			if (other.CompareTag("PowerUp"))
 			{
+				_audioSource.PlayOneShot(_powerUpSound, 1f);
 				_hasPowerUp = true;
 				_powerUpIndicator.SetActive(true);
 				StartCoroutine(PowerUpCountdownRoutine());
 				other.GetComponent<PoolableObject>().ReturnCallback();
 			}
+			else if (other.CompareTag("Dead Zone"))
+			{
+				Menu.GameManager.Instance.GameOver();
+			}
 		}
 
 		private void OnCollisionEnter(Collision collision)
 		{
-			Debug.Log($"Collision with {collision.gameObject.name}! Has power up: {_hasPowerUp}");
 			if(collision.gameObject.CompareTag("Enemy") && _hasPowerUp)
 			{
 				Vector3 pushDir = (collision.gameObject.transform.position - transform.position).normalized;

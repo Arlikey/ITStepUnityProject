@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menu;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -25,6 +26,9 @@ namespace Challenge4
 		// Update is called once per frame
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			// Set enemy direction towards player goal and move there
 			Vector3 lookDirection = (playerGoal.transform.position - transform.position).normalized;
 			enemyRb.AddForce(lookDirection * speed * Time.deltaTime);
@@ -41,6 +45,7 @@ namespace Challenge4
 			else if (other.gameObject.name == "Player Goal")
 			{
 				Destroy(gameObject);
+				GameManager.Instance.GameOver();
 			}
 
 		}

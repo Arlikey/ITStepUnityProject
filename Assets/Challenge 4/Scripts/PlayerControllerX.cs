@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Menu;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -32,6 +33,9 @@ namespace Challenge4
 
 		void Update()
 		{
+			if (!GameManager.Instance._isGameActive)
+				return;
+
 			// Add force to player in direction of the focal point (and camera)
 			float verticalInput = Input.GetAxis("Vertical");
 			playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed * Time.deltaTime);
